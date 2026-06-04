@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Axiom Independent</title>
+
+<style>
+
+/*=======================================================
+
+CHANGE THESE VALUES ONLY
+
+Everything updates automatically
+
+=======================================================*/
+
+:root{
+
+--bg-primary:#111111;
+
+--bg-secondary:#1b1b1b;
+
+--accent:#5b0f91;
+
+--accent-secondary:#8d68ff;
+
+--text-primary:#ffffff;
+
+--text-secondary:#c8c8c8;
+
+--button-text:#ffffff;
+
+--border:#2f2f2f;
+
+--font-main:Arial,sans-serif;
+
+--section-padding:100px;
+
+--rounded:12px;
+
+--content-width:1200px;
+
+}
+
+/*=======================================================*/
+
+*{
+
+margin:0;
+
+padding:0;
+
+box-sizing:border-box;
+
+}
+
+body{
+
+font-family:var(--font-main);
+
+background:var(--bg-primary);
+
+color:var(--text-primary);
+
+line-height:1.6;
+
+}
+
+section{
+
+padding:
+
+var(--section-padding)
+
+20px;
+
+}
+
+.container{
+
+max-width:
+
+var(--content-width);
+
+margin:auto;
+
+}
+
+.hero{
+
+min-height:100vh;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+text-align:center;
+
+padding:40px;
+
+background:
+
+linear-gradient(
+
+180deg,
+
+var(--bg-primary),
+
+var(--bg-secondary)
+
+);
+
+}
+
+.hero h1{
+
+font-size:
+
+clamp(
+3rem,
+8vw,
+6rem
+);
+
+margin-bottom:20px;
+
+}
+
+.hero p{
+
+color:
+
+var(--text-secondary);
+
+font-size:1.2rem;
+
+margin-bottom:40px;
+
+}
+
+.button-group{
+
+display:flex;
+
+gap:20px;
+
+justify-content:center;
+
+flex-wrap:wrap;
+
+}
+
+.btn{
+
+padding:
+
+14px 28px;
+
+text-decoration:none;
+
+border-radius:
+
+var(--rounded);
+
+font-weight:bold;
+
+transition:.3s;
+
+display:inline-block;
+
+}
+
+.btn-primary{
+
+background:
+
+var(--accent);
+
+color:
+
+var(--button-text);
+
+}
+
+.btn-secondary{
+
+border:
+
+2px solid var(--accent);
+
+color:
+
+white;
+
+}
+
+.btn:hover{
+
+transform:
+
+translateY(-3px);
+
+}
+
+.section-title{
+
+text-align:center;
+
+margin-bottom:60px;
+
+}
+
+.section-title h2{
+
+font-size:2.5rem;
+
+margin-bottom:10px;
+
+}
+
+.section-title p{
+
+color:
+
+var(--text-secondary);
+
+}
+
+.card{
+
+background:
+
+var(--bg-secondary);
+
+padding:30px;
+
+border-radius:
+
+var(--rounded);
+
+border:
+
+1px solid var(--border);
+
+margin-bottom:25px;
+
+}
+
+.packet-grid{
+
+display:grid;
+
+grid-template-columns:
+
+repeat(
+auto-fit,
+minmax(220px,1fr)
+);
+
+gap:20px;
+
+}
+
+.packet-item{
+
+background:
+
+var(--bg-secondary);
+
+padding:25px;
+
+text-align:center;
+
+border-radius:
+
+var(--rounded);
+
+border:
+
+1px solid var(--border);
+
+}
+
+table{
+
+width:100%;
+
+border-collapse:collapse;
+
+}
+
+th{
+
+background:
+
+var(--accent);
+
+padding:15px;
+
+}
+
+td{
+
+padding:15px;
+
+border-bottom:
+
+1px solid var(--border);
+
+}
+
+.progress{
+
+height:30px;
+
+background:
+
+var(--border);
+
+border-radius:999px;
+
+overflow:hidden;
+
+margin-top:20px;
+
+}
+
+.progress-fill{
+
+width:45%;
+
+/* CHANGE FUNDRAISER PROGRESS HERE */
+
+height:100%;
+
+background:
+
+var(--accent);
+
+}
+
+.donation-options{
+
+display:flex;
+
+gap:20px;
+
+justify-content:center;
+
+flex-wrap:wrap;
+
+}
+
+footer{
+
+background:#090909;
+
+padding:60px 20px;
+
+text-align:center;
+
+color:
+
+var(--text-secondary);
+
+}
+
+@media(max-width:768px){
+
+.button-group{
+
+flex-direction:column;
+
+}
+
+.hero h1{
+
+font-size:3rem;
+
+}
+
+.section-title h2{
+
+font-size:2rem;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- HERO -->
+
+<header class="hero">
+
+<div>
+
+    <style>
+  .responsive-img {
+    max-width: 100%;  /* Image scales down on small screens */
+    height: auto;     /* Maintains aspect ratio */
+    display: block;   /* Removes bottom whitespace gap */
+  }
+</style>
+
+<h2><img src="Axiom_Large_Back_v2.png" class="responsive-img"></h2>
+
+<div class="button-group">
+
+<a href="#auditions" class="btn btn-primary">
+
+Auditions
+
+</a>
+
+<a href="#donate" class="btn btn-secondary">
+
+Donate
+
+</a>
+
+<a href="#schedule" class="btn btn-secondary">
+
+Schedule
+
+</a>
+
+</div>
+
+</div>
+
+</header>
+
+
+<!-- AUDITIONS -->
+
+<section id="auditions">
+
+<div class="container">
+
+<div class="section-title">
+
+<h2>Auditions</h2>
+
+<p>
+
+Join Axiom for our inaugural season
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>Audition Information</h3>
+
+<p>
+
+Insert dates, locations, requirements, etc.
+
+</p>
+
+<br>
+
+<a class="btn btn-primary">
+
+Register Here
+
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- PACKETS -->
+
+<section id="packets">
+
+<div class="container">
+
+<div class="section-title">
+
+<h2>Audition Packets</h2>
+
+</div>
+
+<div class="packet-grid">
+
+<div class="packet-item">
+
+<h3>Snare Packet</h3>
+
+<a class="btn btn-primary">
+
+Download
+
+</a>
+
+</div>
+
+<div class="packet-item">
+
+<h3>Tenor Packet</h3>
+
+<a class="btn btn-primary">
+
+Download
+
+</a>
+
+</div>
+
+<div class="packet-item">
+
+<h3>Bass Packet</h3>
+
+<a class="btn btn-primary">
+
+Download
+
+</a>
+
+</div>
+
+<div class="packet-item">
+
+<h3>Front Ensemble</h3>
+
+<a class="btn btn-primary">
+
+Download
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- SCHEDULE -->
+
+<section id="schedule">
+
+<div class="container">
+
+<div class="section-title">
+
+<h2>Schedule</h2>
+
+</div>
+
+<table>
+
+<tr>
+
+<th>Date</th>
+
+<th>Event</th>
+
+<th>Location</th>
+
+</tr>
+
+<tr>
+
+<td>September 12</td>
+
+<td>Interest Camp</td>
+
+<td>TBD</td>
+
+</tr>
+
+<tr>
+
+<td>September 26</td>
+
+<td>Audition Camp</td>
+
+<td>TBD</td>
+
+</tr>
+
+<tr>
+
+<td>October 10</td>
+
+<td>Callbacks</td>
+
+<td>TBD</td>
+
+</tr>
+
+</table>
+
+</div>
+
+</section>
+
+
+
+
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<footer>
+
+<p>
+
+Axiom Independent • Nonprofit Performing Arts Organization
+
+</p>
+
+<p>
+
+Expression • Growth • Integrity
+
+</p>
+
+</footer>
+
+</body>
+
+</html>
