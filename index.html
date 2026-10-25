@@ -570,11 +570,12 @@ input[aria-invalid="true"],select[aria-invalid="true"],textarea[aria-invalid="tr
    SETUP: edit this block. Everything else updates from it.
    ============================================================ */
 const SITE = {
-  contactEmail: "",   // e.g. "info@yourdomain.org" (used for the booking form's email fallback)
+  contactEmail: "AxiomEnsemble@gmail.com", // used for the booking form's email fallback
   sponsorFormUrl: "https://docs.google.com/forms/d/e/1FAIpQLSfWDmhMHnB_riswT_RXcEOeb9cAeubFF9t2g0aZdKITVI3U_A/viewform?usp=header",
   donateUrl: "https://www.zeffy.com/en-US/donation-form/axiom-independent",
   merchUrl: "https://www.zeffy.com/en-US/ticketing/axiom-merch-2",
-  formEndpoint: "",   // optional: a form service URL (Formspree, Netlify, etc.) so requests arrive without email
+  formEndpoint: "https://formsubmit.co/ajax/AxiomEnsemble@gmail.com", // sends booking requests straight to this inbox
+  formSubject: "Ensemble Performance Request", // subject line of the email you receive
   ein: "",            // optional: shown under the donate button, e.g. "12-3456789"
   gaId: ""            // optional: Google Analytics 4 Measurement ID, e.g. "G-ABC123XYZ9"
 };
@@ -784,16 +785,21 @@ $("#year").textContent = new Date().getFullYear();
     LABELS.forEach(([, key]) => { data[key] = String(fd.get(key) || "").trim(); });
     const body = LABELS.filter(([, key]) => data[key]).map(([label, key]) => label + ": " + data[key]).join("\n");
     if (window.gtag) window.gtag("event", "booking_request_submitted");
-    const subject = "Performance request: " + data.eventName + " (" + data.date + ")";
+    const subject = SITE.formSubject;
     const first = data.name.split(/\s+/)[0];
 
     if (SITE.formEndpoint) {
       const btn = $("#submit-btn"); btn.disabled = true; btn.textContent = "Sending...";
+      const payload = {};
+      LABELS.forEach(([label, key]) => { if (data[key]) payload[label] = data[key]; });
+      payload._subject = subject;
+      payload._template = "table";
+      payload._replyto = data.email;
       try {
         const res = await fetch(SITE.formEndpoint, {
           method: "POST",
           headers: { "Content-Type": "application/json", "Accept": "application/json" },
-          body: JSON.stringify(Object.assign({ _subject: subject }, data))
+          body: JSON.stringify(payload)
         });
         if (!res.ok) throw new Error("bad status");
         show("Request sent", "Thank you, " + first + ". Our volunteer staff will follow up at " + data.email + ".");
